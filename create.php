@@ -6,6 +6,29 @@ if (!$isLoggedIn) {
 	exit();
 }
 
+//get the categories from the database
+$categories = $pdo->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC);
+
+
+if (isset($_POST['create'])) {
+	$title = $_POST['title'];
+	$category = $_POST['category'];
+	$body = $_POST['body'];
+	$user_id = $_SESSION['user_id'];
+
+	if (empty($title) || empty($category) || empty($body)) {
+		$error = "Please fill in all fields";
+	} else {
+		$stmt = $pdo->prepare("INSERT INTO topics (title, content, user_id, category_id) VALUES (?, ?, ?, ?)");
+		if ($stmt->execute([$title, $body, $user_id, $category])) {
+			header("Location: index.php");
+			exit();
+		} else {
+			$error = "Error creating topic";
+		}
+	}
+}
+
 ?>
 
 <div class="container">
@@ -17,19 +40,26 @@ if (!$isLoggedIn) {
 					<h4 class="pull-right">A Simple Forum</h4>
 					<div class="clearfix"></div>
 					<hr>
-					<form role="form">
+					<?php
+					// Error notification here
+					if (isset($error)) {
+						echo "<div class='alert alert-danger'>$error</div>";
+					}
+					?>
+					<form role="form" method="POST" action="create.php">
 						<div class="form-group">
 							<label>Topic Title</label>
 							<input type="text" class="form-control" name="title" placeholder="Enter Post Title">
 						</div>
 						<div class="form-group">
 							<label>Category</label>
-							<select class="form-control">
-								<option>Design</option>
-								<option>Development</option>
-								<option>Business & Marketing</option>
-								<option>Search Engines</option>
-								<option>Cloud & Hosting</option>
+							<select name="category" class="form-control">
+								<option value="" disabled selected>Select Category</option>
+								<?php
+								foreach ($categories as $category) {
+									echo '<option value="' . $category['id'] . '">' . $category['name'] . '</option>';
+								}
+								?>
 							</select>
 						</div>
 						<div class="form-group">
@@ -37,7 +67,7 @@ if (!$isLoggedIn) {
 							<textarea id="body" rows="10" cols="80" class="form-control" name="body"></textarea>
 							<script>CKEDITOR.replace('body');</script>
 						</div>
-						<button type="submit" class="color btn btn-default">Submit</button>
+						<button name="create" type="submit" class="color btn btn-default">Submit</button>
 					</form>
 				</div>
 			</div>
