@@ -1,4 +1,12 @@
-<?php require 'includes/header.php' ?>
+<?php
+require 'includes/header.php';
+
+if (!$isLoggedIn) {
+	header("Location: ../auth/login.php");
+	exit();
+}
+
+?>
 
 <div class="container">
 	<div class="row">

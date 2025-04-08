@@ -1,11 +1,11 @@
 <?php
-define('BASE_URL', "https://forum.dev:8890");
+define('BASE_URL', "http://localhost:8888/");
 
 // Database connection details
 $servername = "localhost"; // Use only the hostname
 $username = "root";
 $password = "root"; // Default MAMP password
-$dbname = "ff_forum";
+$dbname = "forum";
 $port = 8889; // MAMP MySQL port
 $socket = "/Applications/MAMP/tmp/mysql/mysql.sock"; // MAMP MySQL socket path
 

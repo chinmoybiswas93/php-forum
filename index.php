@@ -5,7 +5,12 @@
 		<div class="col-md-8">
 			<div class="main-col">
 				<div class="block">
-					<h1 class="pull-left">Welcome to Forum</h1>
+					<?php
+					// Display a welcome message using a ternary operator
+					echo !empty($_SESSION['name'])
+						? "<h1 class='pull-left'>Welcome, " . htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8')
+						: '<h1 class="pull-left">Welcome to Forum</h1>';
+					?>
 					<h4 class="pull-right">A Simple Forum</h4>
 					<div class="clearfix"></div>
 					<hr>

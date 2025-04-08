@@ -1,4 +1,9 @@
-<?php include __DIR__ . '/../config/config.php'; ?>
+<?php include __DIR__ . '/../config/config.php';
+session_start();
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['user_id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,10 +34,19 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/login.php">Login</a></li>
-                    <li><a href="/auth/register.php">Register</a></li>
-                    <li><a href="/create.php">Create Topic</a></li>
+
+                    <?php if ($isLoggedIn): ?>
+                        <li><a href="/create.php">Create Topic</a></li>
+                        <li><a href="/auth/logout.php">Logout</a></li>
+                    <?php else: ?>
+                        <li><a href="/auth/login.php">Login</a></li>
+                        <li><a href="/auth/register.php">Register</a></li>
+                    <?php endif; ?>
+
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </div>
+</body>
+
+</html>
