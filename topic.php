@@ -1,4 +1,10 @@
-<?php require 'includes/header.php' ?>
+<?php
+require 'includes/header.php';
+
+//get the topic id from the url
+$topic_id = $_GET['id'] ?? null;
+var_dump($topic_id); // Debugging line to check the value of $topic_id
+?>
 
 <div class="container">
 	<div class="row">

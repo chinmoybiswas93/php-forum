@@ -67,7 +67,7 @@ if (isset($_POST['create'])) {
 							<textarea id="body" rows="10" cols="80" class="form-control" name="body"></textarea>
 							<script>CKEDITOR.replace('body');</script>
 						</div>
-						<button name="create" type="submit" class="color btn btn-default">Submit</button>
+						<button name="create" type="submit" class="color btn btn-default">Create Topic </button>
 					</form>
 				</div>
 			</div>
