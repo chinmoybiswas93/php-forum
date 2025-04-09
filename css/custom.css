@@ -96,6 +96,7 @@ li.topic:last-child {
 
 img.avatar {
   width: 100%;
+  border-radius: 50%;
 }
 
 a.list-group-item.active,
@@ -142,4 +143,19 @@ a.list-group-item.active:focus {
 .color {
   background-color: rgb(117, 50, 249);
   color: white;
+}
+
+.dropdown-menu {
+  top: 129%;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: #7532f9 !important;
+}
+
+.dropdown-menu > li > a {
+  padding: 7px 20px;
 }

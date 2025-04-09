@@ -5,6 +5,10 @@ $total_users = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
 $total_topics = $pdo->query("SELECT COUNT(*) FROM topics")->fetchColumn();
 $total_categories = $pdo->query("SELECT COUNT(*) FROM categories")->fetchColumn();
 
+$selected_category = isset($_GET['cat']) ? $_GET['cat'] : null;
+
+// var_dump($selected_category); // Debugging line to check the value of $selected_category
+
 //create a topic count function to get the number of topics in each category
 function getTopicCount($category_id, $pdo)
 {
@@ -23,13 +27,12 @@ foreach ($categories as &$category) {
     <div class="block">
         <h3>Categories</h3>
         <div class="list-group">
-            <a href="index.php" class="list-group-item active">All Topics <span
-                    class="badge pull-right"><?php echo $total_topics; ?></span></a>
+            <a href="index.php" class="list-group-item <?php echo !$selected_category ? 'active' : ''; ?>">All Topics
+                <span class="badge pull-right"><?php echo $total_topics; ?></span></a>
             <?php for ($i = 0; $i < count($categories); $i++) {
-                // var_dump($categories[$i][]);
                 ?>
                 <a href="index.php?cat=<?php echo $categories[$i]['id'] ?>"
-                    class="list-group-item"><?php echo $categories[$i]['name'] ?><span
+                    class="list-group-item <?php echo $selected_category === $categories[$i]['id'] ? 'active' : ''; ?>"><?php echo $categories[$i]['name'] ?><span
                         class="badge pull-right"><?php echo $categories[$i]['topic_count'] ?> </span></a>
                 <?php
             } ?>

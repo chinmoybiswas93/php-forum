@@ -25,6 +25,7 @@ if (isset($_POST['login'])) {
 			// Set session variables
 			$_SESSION['user_id'] = $user['id'];
 			$_SESSION['name'] = $user['name'];
+			$_SESSION['email'] = $user['email'];
 
 			// Redirect to the homepage
 			header("Location: ../index.php?success=1");
