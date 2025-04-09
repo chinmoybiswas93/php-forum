@@ -55,6 +55,20 @@ try {
     $pdo->exec($sql);
     // topics table with id, title, content, user_id, category_id, created_at
 
+
+    //check if the replies table exists, if not create a one with the same structure
+    $sql = "CREATE TABLE IF NOT EXISTS replies (
+        id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        content TEXT NOT NULL,
+        user_id INT(11) NOT NULL,
+        topic_id INT(11) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (topic_id) REFERENCES topics(id)
+    )";
+    $pdo->exec($sql);
+    // replies table with id, content, user_id, topic_id, created_at
+
 } catch (PDOException $e) {
     // Display the error message on the page
     die("Database connection failed: " . $e->getMessage());

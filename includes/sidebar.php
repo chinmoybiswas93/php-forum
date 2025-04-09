@@ -38,18 +38,17 @@ foreach ($categories as &$category) {
             } ?>
         </div>
     </div>
-</div>
 
-<div class="block" style="margin-top: 20px;">
-    <h3 class="margin-top: 40px">Forum Statistics</h3>
-    <div class="list-group">
-        <p class="list-group-item">Total Number of Users:<span
-                class="color badge pull-right"><?php echo $total_users; ?></span></p>
-        <p class="list-group-item">Total Number of Topics:<span
-                class="color badge pull-right"><?php echo $total_topics; ?></span></p>
-        <p class="list-group-item">Total Number of Categories: <span
-                class="color badge pull-right"><?php echo $total_categories; ?></span></p>
+    <div class="block" style="margin-top: 20px;">
+        <h3>Forum Statistics</h3>
+        <div class="list-group">
+            <p class="list-group-item">Total Number of Users:<span
+                    class="color badge pull-right"><?php echo $total_users; ?></span></p>
+            <p class="list-group-item">Total Number of Topics:<span
+                    class="color badge pull-right"><?php echo $total_topics; ?></span></p>
+            <p class="list-group-item">Total Number of Categories: <span
+                    class="color badge pull-right"><?php echo $total_categories; ?></span></p>
 
+        </div>
     </div>
-</div>
 </div>
